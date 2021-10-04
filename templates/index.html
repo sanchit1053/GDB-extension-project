@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Tutorial 1: Getting Started</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/2.7.10/cytoscape.js"></script>
+        <!--<script src="node_modules\cytoscape\dist\cytoscape.min.js"></script>-->
+        <style>
+            #cy {
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        border-style: solid;
+        border-color: black;
+    }
+    </style>
+    </head>
+    
+    <body> 
+      <div id="cy" ></div>
+      <script>
+        
+          var data = '{{ data |tojson }}'; 
+          console.log(data);
+          var cy = cytoscape({
+            container: document.getElementById('cy'),
+            style: [
+        {
+            selector: 'node',
+            style: {
+                shape: 'hexagon',
+                'background-color': 'green',
+                label: 'data(id)'
+              }
+        }],
+        layout: {
+        name: 'concentric'
+    },
+            elements:  JSON.parse(data)
+            /*[
+      // nodes
+      { data: { id: 'a' } },
+      { data: { id: 'b' } },
+      { data: { id: 'c' } },
+      { data: { id: 'd' } },
+      { data: { id: 'e' } },
+      { data: { id: 'f' } },
+      // edges
+      {
+        data: {
+          id: 'ab',
+          source: 'a',
+          target: 'b'
+        }
+      },
+      {
+        data: {
+          id: 'cd',
+          source: 'c',
+          target: 'd'
+        }
+      },
+      {
+        data: {
+          id: 'ef',
+          source: 'e',
+          target: 'f'
+        }
+      },
+      {
+        data: {
+          id: 'ac',
+          source: 'a',
+          target: 'd'
+        }
+      },
+      {
+        data: {
+          id: 'be',
+          source: 'b',
+          target: 'e'
+        }
+      }
+    ] */
+          });
+
+        </script>
+    </body>
+</html>
