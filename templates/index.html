@@ -4,13 +4,14 @@
     <head>
         <title>Tutorial 1: Getting Started</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/2.7.10/cytoscape.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js"></script>
         <!--<script src="node_modules\cytoscape\dist\cytoscape.min.js"></script>-->
         <style>
             #cy {
         width: 50%;
         height: 50%;
         position: absolute;
-        top: 10px;
+        top: 80px;
         left: 10px;
         border-style: solid;
         border-color: black;
@@ -20,12 +21,35 @@
     
     <body> 
       <div id="cy" ></div>
+
+      <form action="/hello" method = "post">
+        command <input type = "text" name = "cmd" >
+        <input type = "submit" value = "Submit" >
+      </form>
+
+      {% for r in response %}
+        {%if r['type'] == 'output'%} 
+          {{r['payload']}} <br>
+        {%endif%}
+        {%if r['type'] == 'console'%} 
+          {{r['payload']}} <br>
+        {%endif%}
+      {%endfor%}
+      <br>
+
+
+
       <script>
         
           var data = '{{ data |tojson }}'; 
           console.log(data);
           var cy = cytoscape({
             container: document.getElementById('cy'),
+
+            layout: {
+                name: "dagre"
+            },
+
             style: [
         {
             selector: 'node',

@@ -1,6 +1,6 @@
 import gdb.printing
 import json
-# from 
+#import application 
 def vector_to_list(std_vector):
     out_list = []
     value_reference = std_vector['_M_impl']['_M_start']
@@ -9,6 +9,10 @@ def vector_to_list(std_vector):
         value_reference += 1
 
     return out_list
+
+def gdbrun(s):
+    gdb.execute(s)
+
 
 class graphPrint:
     def __init__(self,val):
@@ -42,3 +46,4 @@ def build_pretty_printer():
     return pp
 
 gdb.printing.register_pretty_printer(gdb.current_objfile(),build_pretty_printer(), replace = True)
+
