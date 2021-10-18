@@ -3,46 +3,82 @@
 
     <head>
         <title>Tutorial 1: Getting Started</title>
+        <script src ="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/2.7.10/cytoscape.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js"></script>
         <!--<script src="node_modules\cytoscape\dist\cytoscape.min.js"></script>-->
         <style>
             #cy {
-        width: 50%;
-        height: 50%;
-        position: absolute;
-        top: 80px;
-        left: 10px;
-        border-style: solid;
-        border-color: black;
-    }
-    </style>
+                width: 50%;
+                height: 50%;
+                position: absolute;
+                top: 250px;
+                left: 10px;
+                border-style: solid;
+                border-color: black;
+            }
+
+            input {
+              width : 50%;
+              line-height : 60px;
+            }
+            
+        </style>
     </head>
     
     <body> 
       <div id="cy" ></div>
 
       <form action="/hello" method = "post">
-        command <input type = "text" name = "cmd" >
-        <input type = "submit" value = "Submit" >
+        <div>
+          command <input type = "text" name = "cmd" >
+        <input type = "submit" value = "Submit" onclick="Outputb()">
+        </div>
+        <div>
+          <label for="example">Response from gdb console:</label><input type="textbox" name="example">
+        </div>
+        
       </form>
 
+      <label for="demo">Node Data :</label><input type="textbox" name="demo">
+
       {% for r in response %}
-        {%if r['type'] == 'output'%} 
-          {{r['payload']}} <br>
+        {%if r['type'] == 'output'%}
+        <div id = "try">{{r['payload']}}</div>
+        <style>
+          #try {
+            display : none;
+          }
+        </style>
         {%endif%}
-        {%if r['type'] == 'console'%} 
-          {{r['payload']}} <br>
+        {%if r['type'] == 'console'%}
+        <div id = "fry"> {{r['payload']}}</div>
+        <style>
+          #fry {
+            display : none;
+          }
+        </style>
         {%endif%}
       {%endfor%}
-      <br>
 
-
-
+      <br> 
+      <script>
+        function Outputb(){
+          if( document.getElementById("fry").innerHTML != null){
+              var fv = document.getElementById("fry").innerHTML;
+          }
+          else {
+            var fv = document.getElementById("try").innerHTML;
+          }
+          console.log(fv); 
+           document.getElementsByName("example")[0].value = fv;
+        } 
+    </script>
       <script>
         
           var data = '{{ data |tojson }}'; 
           console.log(data);
+          
           var cy = cytoscape({
             container: document.getElementById('cy'),
 
@@ -55,14 +91,16 @@
             selector: 'node',
             style: {
                 shape: 'hexagon',
-                'background-color': 'green',
-                label: 'data(id)'
-              }
+                'background-color' : 'green',
+                label: 'data(id)',
+              },
+
         }],
         layout: {
         name: 'concentric'
     },
             elements:  JSON.parse(data)
+            
             /*[
       // nodes
       { data: { id: 'a' } },
@@ -110,6 +148,33 @@
     ] */
           });
 
+          /*cy.on('mouseover ,'node', function(event) {
+            var node = event.cyTarget;
+            node.qtip({
+              content:'hello',
+              show :{
+                event : event.type,
+                ready : true
+              },
+              hide :{
+                event : 'mouseout unfocus'
+              }
+            }, event);
+          });
+          */
+
+          cy.on('click', 'node', function(evt){
+      console.log( 'clicked ' + this.id() );
+      cy.style()
+       .selector('node')
+       .css({
+         'background-color': 'red'
+       })
+      console.log(this.elements);
+      document.getElementsByName("demo")[0].value = this.id();
+      
+});
+      
         </script>
     </body>
 </html>
