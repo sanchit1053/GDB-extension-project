@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import json
 from pygdbmi.gdbcontroller import GdbController
 app = Flask(__name__)
@@ -14,6 +14,8 @@ def index():
     if request.method == 'POST':
         command = request.form['cmd']
         response = gdb.write(command)
+    
+        return jsonify({'status': 200 , 'data' : data, 'response':response})
         return render_template("index.html", data = (data), response = response)
 
 def apprun():   
@@ -23,3 +25,4 @@ if __name__ == "__main__":
     gdb = GdbController();
     gdb.write("source pyt.py")
     app.run(debug=True)
+    gdb.write("q")

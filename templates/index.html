@@ -13,9 +13,8 @@
         <style>
             #cy {
         width: 50%;
-        height: 50%;
+        height: 80%;
         position: absolute;
-        top: 10px;
         left: 10px;
         border-style: solid;
         border-color: black;
@@ -23,19 +22,17 @@
 
         #terminal{
           width: 50%;
-          height: 50%;
+          height: 80%;
           position: absolute;
-          left: 55%;
+          left: 52%;
         }
     </style>
     </head>
     
     <body> 
       <div id="cy" ></div>
-      <div id="terminal">
-       
-      </div> 
-      <form action="/" method = "post">
+      <div id="terminal"></div> 
+      <!-- <form action="/" method = "post">
         command <input type = "text" name = "cmd" >
         <input type = "submit" value = "Submit" >
       </form>
@@ -48,25 +45,22 @@
           {{r['payload']}} <br>
         {%endif%}
       {%endfor%}
-      <br>
+      <br> -->
 
       <script>
       $(document).ready(function(){
      
-        $('#terminal').terminal({
-          iam: function (name) {
-              this.echo('Hello, ' + name );
-          }
-        }, {
-          greetings: 'Welcome to the GDB Graph visualizer by Team Terminal Stack'
-        });
-
-    });
-    </script>
-      <script>
-        
-          var data = '{{ data |tojson }}'; 
-          var cy = cytoscape({
+        $('#terminal').terminal(function(command,term){
+          $.post('/', {cmd: command}).then(function(r){
+            console.log(r.response);
+            for (let a in r.response){
+                if(r.response[a].type == 'console'){
+                  console.log("Hello");
+                  term.echo(r.response[a].payload);
+                }
+            }
+            var data = JSON.stringify(r.data);
+            var cy = cytoscape({
            // container: document.getElementById('cy'),
             container: $('#cy'),
 
@@ -83,11 +77,41 @@
                 label: 'data(id)'
               }
         }],
-  
-        
         elements:  JSON.parse(data)
           });
+            function updateDiv() {$("#cy").load(location.href + " #cy") };
+          });
+        },{
+          greetings: 'Welcome to the GDB Graph visualizer by Team Terminal Stack'
+        });
 
+     });
+     </script>
+
+
+    <script>
+        
+
+        var data = '{{ data |tojson }}'; 
+        var cy = cytoscape({
+           // container: document.getElementById('cy'),
+            container: $('#cy'),
+
+        layout: {
+          name: 'dagre',
+          rankDir: 'LR'
+        },
+            style: [
+        {
+            selector: 'node',
+            style: {
+                shape: 'hexagon',
+                'background-color': 'data(color)',
+                label: 'data(id)'
+              }
+        }],
+        elements:  JSON.parse(data)
+          });
         </script>
     </body>
 </html>
