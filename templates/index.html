@@ -4,6 +4,8 @@
     <head>
         <title>Graph Visualizer</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.29.4/js/jquery.terminal.min.js"></script> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.29.4/css/jquery.terminal.min.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.19.1/cytoscape.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.2.2/cytoscape-dagre.min.js"></script>
@@ -18,12 +20,21 @@
         border-style: solid;
         border-color: black;
     }
+
+        #terminal{
+          width: 50%;
+          height: 50%;
+          position: absolute;
+          left: 55%;
+        }
     </style>
     </head>
     
     <body> 
       <div id="cy" ></div>
-
+      <div id="terminal">
+       
+      </div> 
       <form action="/" method = "post">
         command <input type = "text" name = "cmd" >
         <input type = "submit" value = "Submit" >
@@ -39,9 +50,19 @@
       {%endfor%}
       <br>
 
+      <script>
+      $(document).ready(function(){
+     
+        $('#terminal').terminal({
+          iam: function (name) {
+              this.echo('Hello, ' + name );
+          }
+        }, {
+          greetings: 'Welcome to the GDB Graph visualizer by Team Terminal Stack'
+        });
 
-
-
+    });
+    </script>
       <script>
         
           var data = '{{ data |tojson }}'; 

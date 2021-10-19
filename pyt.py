@@ -1,13 +1,9 @@
 import gdb.printing
 import json
-<<<<<<< Updated upstream
-# from 
-=======
 
 normalcolor = 'blue'
 selectedcolor = 'green'
 
->>>>>>> Stashed changes
 def vector_to_list(std_vector):
     out_list = []
     value_reference = std_vector['_M_impl']['_M_start']
@@ -16,11 +12,6 @@ def vector_to_list(std_vector):
         value_reference += 1
 
     return out_list
-
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 class graphPrint:
     def __init__(self,val):
         self.val = val;
@@ -48,14 +39,6 @@ class graphPrint:
             json.dump(data, file , indent = 4)
         return nodes + "\n" + edges
     
-# def build_pretty_printer():
-#     pp = gdb.printing.RegexpCollectionPrettyPrinter("my_library")
-#     with open('config.json', 'r') as file:
-#         config = json.load(file)
-#     graph = '^' + config[0]["Graph"] + '$'
-#     pp.add_printer('graph', graph, graphPrint)
-#     return pp
-
 
 class NodeMarker:
     def __init__(self, val):
@@ -89,10 +72,5 @@ def build_pretty_printer():
     pp.add_printer('node', node, NodeMarker)
     return pp
 
-<<<<<<< Updated upstream
-gdb.printing.register_pretty_printer(gdb.current_objfile(),build_pretty_printer(), replace = True)
-=======
 gdb.printing.register_pretty_printer(gdb.current_objfile(),build_pretty_printer(), replace = True)
 
-
->>>>>>> Stashed changes
