@@ -4,28 +4,29 @@ using namespace std;
 class Node{
     public:
         int number;
+        int p=rand();
     
     Node(int val){
         number = val;
     }
 };
 
-class Graph{
+class asdf{
     public:
-        vector<Node> nodes;
-        vector<pair<Node,Node>> edges; 
+        vector<Node> qwer;
+        vector<pair<Node,Node>> zxcv; 
 };
 
-
 int main(){
-    vector<int> a{1,2,5,4};
-    Node *n = new Node(1);
-    Graph *p = new Graph();
-    p->nodes.push_back(*n);
-    for(int i = 2; i< 10; i++){
+    Node *n[2] = {new Node(1), new Node(2)};
+    asdf *p = new asdf();
+    p->qwer.push_back(*n[0]);
+    p->qwer.push_back(*n[1]);
+    for(int i = 3; i< 10; i++){
         Node *x = new Node(i);
-        p->nodes.push_back(*x);
-        p->edges.push_back(make_pair(*n,*x));
+        p->qwer.push_back(*x);
+        p->zxcv.push_back(make_pair(*n[rand()%2],*x));
     }
+    p->zxcv.push_back(make_pair(*n[0],*n[1]));
     return 0; 
 }
