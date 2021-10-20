@@ -1,1 +1,107 @@
-[{"data": {"id": 1}}, {"data": {"id": 2}}, {"data": {"id": 3}}, {"data": {"id": 4}}, {"data": {"source": 1, "id": "12", "target": 2}}, {"data": {"source": 1, "id": "13", "target": 3}}]
+[
+    {
+        "data": {
+            "id": 1,
+            "word": 1804289383,
+            "color": "blue"
+        }
+    },
+    {
+        "data": {
+            "id": 2,
+            "word": 846930886,
+            "color": "blue"
+        }
+    },
+    {
+        "data": {
+            "id": 3,
+            "word": 1681692777,
+            "color": "blue"
+        }
+    },
+    {
+        "data": {
+            "id": 4,
+            "word": 1957747793,
+            "color": "blue"
+        }
+    },
+    {
+        "data": {
+            "id": 5,
+            "word": 719885386,
+            "color": "blue"
+        }
+    },
+    {
+        "data": {
+            "id": 6,
+            "word": 596516649,
+            "color": "blue"
+        }
+    },
+    {
+        "data": {
+            "id": 7,
+            "word": 1025202362,
+            "color": "blue"
+        }
+    },
+    {
+        "data": {
+            "id": 8,
+            "word": 783368690,
+            "color": "blue"
+        }
+    },
+    {
+        "data": {
+            "id": 9,
+            "word": 2044897763,
+            "color": "blue"
+        }
+    },
+    {
+        "data": {
+            "id": "23",
+            "source": 2,
+            "target": 3
+        }
+    },
+    {
+        "data": {
+            "id": "24",
+            "source": 2,
+            "target": 4
+        }
+    },
+    {
+        "data": {
+            "id": "15",
+            "source": 1,
+            "target": 5
+        }
+    },
+    {
+        "data": {
+            "id": "26",
+            "source": 2,
+            "target": 6
+        }
+    },
+    {
+        "data": {
+            "id": "27",
+            "source": 2,
+            "target": 7
+        }
+    },
+    {
+        "data": {
+            "id": "28",
+            "source": 2,
+            "target": 8
+        }
+    }
+]
