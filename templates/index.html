@@ -2,90 +2,132 @@
 <html lang="en">
 
     <head>
-        <title>Tutorial 1: Getting Started</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/2.7.10/cytoscape.js"></script>
-        <!--<script src="node_modules\cytoscape\dist\cytoscape.min.js"></script>-->
+        <title>Graph Visualizer</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.29.4/js/jquery.terminal.min.js"></script> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.29.4/css/jquery.terminal.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.19.1/cytoscape.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.2.2/cytoscape-dagre.min.js"></script>
+        
         <style>
             #cy {
-        width: 50%;
-        height: 50%;
+        width: 60%;
+        height: 94%;
         position: absolute;
         top: 10px;
-        left: 10px;
+        left: 700px;
         border-style: solid;
         border-color: black;
     }
+
     </style>
     </head>
     
     <body> 
+      
       <div id="cy" ></div>
+       
+      </div> 
+      <form action="/" method = "post">
+        command <input type = "text" name = "cmd" >
+        <input type = "submit" value = "Submit" >
+      </form>
+
+      {% for r in response %}
+        {%if r['type'] == 'output'%} 
+          {{r['payload']}} <br>
+        {%endif%}
+        {%if r['type'] == 'console'%} 
+          {{r['payload']}} <br>
+        {%endif%}
+      {%endfor%}
+      <br>
       <script>
-        
+
           var data = '{{ data |tojson }}'; 
-          console.log(data);
+
           var cy = cytoscape({
-            container: document.getElementById('cy'),
-            style: [
-        {
+           // container: document.getElementById('cy'),
+            container: $('#cy'),
+         
+          layout: {
+            name: 'cose',
+              fit: true,
+              zoomingEnabled: true,
+              userZoomingEnabled: true,
+              styleEnabled: true
+          
+          },
+            
+          style: [
+          {
             selector: 'node',
             style: {
-                shape: 'hexagon',
-                'background-color': 'green',
+                shape: "circle",
+                "line-color": "#61bffc",
+                'background-color': 'data(color)',
                 label: 'data(id)'
               }
-        }],
-        layout: {
-        name: 'concentric'
-    },
-            elements:  JSON.parse(data)
-            /*[
-      // nodes
-      { data: { id: 'a' } },
-      { data: { id: 'b' } },
-      { data: { id: 'c' } },
-      { data: { id: 'd' } },
-      { data: { id: 'e' } },
-      { data: { id: 'f' } },
-      // edges
-      {
-        data: {
-          id: 'ab',
-          source: 'a',
-          target: 'b'
-        }
-      },
-      {
-        data: {
-          id: 'cd',
-          source: 'c',
-          target: 'd'
-        }
-      },
-      {
-        data: {
-          id: 'ef',
-          source: 'e',
-          target: 'f'
-        }
-      },
-      {
-        data: {
-          id: 'ac',
-          source: 'a',
-          target: 'd'
-        }
-      },
-      {
-        data: {
-          id: 'be',
-          source: 'b',
-          target: 'e'
-        }
-      }
-    ] */
+          },
+          {  selector: 'node:selected',
+              css: {
+                'line-color': 'black',
+                'target-arrow-color': 'black',
+                "curve-style": "bezier",
+                "control-point-step-size": "100",
+                'source-arrow-color': 'black',
+                "border-color": "black",
+                "border-opacity": "1",
+                "border-width": "2px"
+              }
+          },
+          {  selector: 'edge:selected',
+              style: {
+                'line-color': 'black',
+                'target-arrow-color': 'black',
+                "curve-style": "bezier",
+                "control-point-step-size": "100",
+                width: 4
+              }
+          },
+          {
+            selector: 'edge',
+            style: {
+              "curve-style": "bezier",
+              "control-point-step-size": "100",
+              width: 4,
+              //"target-arrow-shape": "triangle",
+              "line-color": "#9dbaea",
+              "target-arrow-color": "#9dbaea"
+            }
+          }],
+
+
+          elements:  JSON.parse(data),
+
+          });
+          
+
+          cy.on('click', 'edge', function(evt){
+              document.getElementById("g").innerHTML = this.source().id()+"-->"+this.target().id();
           });
 
+          cy.on('tap', 'node', function(evt){
+              document.getElementById("g").innerHTML = 'Data in node: '+this.data("word");
+              var t = cy.elements('node');
+              t.style('background-color', 'blue');
+              this.connectedEdges().targets().style('background-color', 'yellow');    
+              this.connectedEdges().sources().style('background-color', 'purple');        
+              //var t = cy.elements('edge[ source = "1"]');
+              //var f = t.targets();
+              //f.css('background-color', 'pink');
+              
+          });
+          
+
         </script>
+        <p id="g" style="color:green;font-size:30px;"></p>
+        
     </body>
 </html>
