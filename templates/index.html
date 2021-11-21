@@ -2,179 +2,115 @@
 <html lang="en">
 
     <head>
-        <title>Tutorial 1: Getting Started</title>
-        <script src ="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/2.7.10/cytoscape.js"></script>
+        <title>Graph Visualizer</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.29.4/js/jquery.terminal.min.js"></script> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.29.4/css/jquery.terminal.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.19.1/cytoscape.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js"></script>
-        <!--<script src="node_modules\cytoscape\dist\cytoscape.min.js"></script>-->
+        <script src="https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.2.2/cytoscape-dagre.min.js"></script>
+        
         <style>
             #cy {
-                width: 50%;
-                height: 50%;
-                position: absolute;
-                top: 250px;
-                left: 10px;
-                border-style: solid;
-                border-color: black;
-            }
+        width: 50%;
+        height: 80%;
+        position: absolute;
+        left: 10px;
+        border-style: solid;
+        border-color: black;
+    }
 
-            input {
-              width : 50%;
-              line-height : 60px;
-            }
-            
-        </style>
+        #terminal{
+          width: 50%;
+          height: 80%;
+          position: absolute;
+          left: 52%;
+        }
+    </style>
     </head>
     
     <body> 
       <div id="cy" ></div>
-
-      <form action="/hello" method = "post">
-        <div>
-          command <input type = "text" name = "cmd" >
-        <input type = "submit" value = "Submit" onclick="Outputb()">
-        </div>
-        <div>
-          <label for="example">Response from gdb console:</label><input type="textbox" name="example">
-        </div>
-        
+      <div id="terminal"></div> 
+      <!-- <form action="/" method = "post">
+        command <input type = "text" name = "cmd" >
+        <input type = "submit" value = "Submit" >
       </form>
-
-      <label for="demo">Node Data :</label><input type="textbox" name="demo">
-
       {% for r in response %}
-        {%if r['type'] == 'output'%}
-        <div id = "try">{{r['payload']}}</div>
-        <style>
-          #try {
-            display : none;
-          }
-        </style>
+        {%if r['type'] == 'output'%} 
+          {{r['payload']}} <br>
         {%endif%}
-        {%if r['type'] == 'console'%}
-        <div id = "fry"> {{r['payload']}}</div>
-        <style>
-          #fry {
-            display : none;
-          }
-        </style>
+        {%if r['type'] == 'console'%} 
+          {{r['payload']}} <br>
         {%endif%}
       {%endfor%}
+      <br> -->
 
-      <br> 
       <script>
-        function Outputb(){
-          if( document.getElementById("fry").innerHTML != null){
-              var fv = document.getElementById("fry").innerHTML;
-          }
-          else {
-            var fv = document.getElementById("try").innerHTML;
-          }
-          console.log(fv); 
-           document.getElementsByName("example")[0].value = fv;
-        } 
-    </script>
-      <script>
-        
-          var data = '{{ data |tojson }}'; 
-          console.log(data);
-          
-          var cy = cytoscape({
-            container: document.getElementById('cy'),
+      $(document).ready(function(){
+     
+        $('#terminal').terminal(function(command,term){
+          $.post('/', {cmd: command}).then(function(r){
+            console.log(r.response);
+            for (let a in r.response){
+                if(r.response[a].type == 'console'){
+                  console.log("Hello");
+                  term.echo(r.response[a].payload);
+                }
+            }
+            var data = JSON.stringify(r.data);
+            var cy = cytoscape({
+           // container: document.getElementById('cy'),
+            container: $('#cy'),
 
-            layout: {
-                name: "dagre"
-            },
-
+        layout: {
+          name: 'dagre',
+          rankDir: 'LR'
+        },
             style: [
         {
             selector: 'node',
             style: {
                 shape: 'hexagon',
-                'background-color' : 'green',
-                label: 'data(id)',
-              },
-
-        }],
-        layout: {
-        name: 'concentric'
-    },
-            elements:  JSON.parse(data)
-            
-            /*[
-      // nodes
-      { data: { id: 'a' } },
-      { data: { id: 'b' } },
-      { data: { id: 'c' } },
-      { data: { id: 'd' } },
-      { data: { id: 'e' } },
-      { data: { id: 'f' } },
-      // edges
-      {
-        data: {
-          id: 'ab',
-          source: 'a',
-          target: 'b'
-        }
-      },
-      {
-        data: {
-          id: 'cd',
-          source: 'c',
-          target: 'd'
-        }
-      },
-      {
-        data: {
-          id: 'ef',
-          source: 'e',
-          target: 'f'
-        }
-      },
-      {
-        data: {
-          id: 'ac',
-          source: 'a',
-          target: 'd'
-        }
-      },
-      {
-        data: {
-          id: 'be',
-          source: 'b',
-          target: 'e'
-        }
-      }
-    ] */
-          });
-
-          /*cy.on('mouseover ,'node', function(event) {
-            var node = event.cyTarget;
-            node.qtip({
-              content:'hello',
-              show :{
-                event : event.type,
-                ready : true
-              },
-              hide :{
-                event : 'mouseout unfocus'
+                'background-color': 'data(color)',
+                label: 'data(id)'
               }
-            }, event);
+        }],
+        elements:  JSON.parse(data)
           });
-          */
+            function updateDiv() {$("#cy").load(location.href + " #cy") };
+          });
+        },{
+          greetings: 'Welcome to the GDB Graph visualizer by Team Terminal Stack'
+        });
 
-          cy.on('click', 'node', function(evt){
-      console.log( 'clicked ' + this.id() );
-      cy.style()
-       .selector('node')
-       .css({
-         'background-color': 'red'
-       })
-      console.log(this.elements);
-      document.getElementsByName("demo")[0].value = this.id();
-      
-});
-      
+     });
+     </script>
+
+
+    <script>
+        
+
+        var data = '{{ data |tojson }}'; 
+        var cy = cytoscape({
+           // container: document.getElementById('cy'),
+            container: $('#cy'),
+
+        layout: {
+          name: 'dagre',
+          rankDir: 'LR'
+        },
+            style: [
+        {
+            selector: 'node',
+            style: {
+                shape: 'hexagon',
+                'background-color': 'data(color)',
+                label: 'data(id)'
+              }
+        }],
+        elements:  JSON.parse(data)
+          });
         </script>
     </body>
 </html>

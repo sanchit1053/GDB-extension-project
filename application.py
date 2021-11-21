@@ -1,13 +1,12 @@
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import json
-#import pyt
 from pygdbmi.gdbcontroller import GdbController
 app = Flask(__name__)
 
+votes = 0
 
-
-@app.route("/hello", methods = ['POST' , 'GET'])
+@app.route("/", methods = ['POST' , 'GET'])
 def index():
     with open('sample.json', 'r') as file:
         data = json.load(file)
@@ -16,8 +15,8 @@ def index():
     if request.method == 'POST':
         command = request.form['cmd']
         response = gdb.write(command)
-        print(command)
-        print(data)
+    
+        return jsonify({'status': 200 , 'data' : data, 'response':response})
         return render_template("index.html", data = (data), response = response)
 
 def apprun():   
@@ -27,3 +26,4 @@ if __name__ == "__main__":
     gdb = GdbController();
     gdb.write("source pyt.py")
     app.run(debug=True)
+    gdb.write("q")
