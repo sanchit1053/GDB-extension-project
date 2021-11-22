@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+           background-color: aqua;
+        }
+
+        #submit:hover{
+           background-color:aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <style>
+        #header{
+            text-align: center;
+        }
+        #main{
+            text-align: center;
+        }
+        #link{
+            position: relative;
+            top:100px;
+        }
+    </style>
+    <h1 id="header">Uploads Page</h1>
+    <div id=main>
+    <a href="\" id="link">Back to GDB Visualiser Extension</a>
+    <form  id="myForm" action="/upload-file" method="post" enctype="multipart/form-data">
+        <input type="file" name="inpFile" id="inpFile">
+        <button type="submit" id="submit">Upload file</button>
+    </form>
+    </div>
+</body>
+</html>

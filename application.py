@@ -1,7 +1,9 @@
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 import json
 from pygdbmi.gdbcontroller import GdbController
+import os
+from werkzeug.utils import secure_filename
 app = Flask(__name__)
 
 votes = 0
@@ -15,9 +17,54 @@ def index():
     if request.method == 'POST':
         command = request.form['cmd']
         response = gdb.write(command)
+
+
     
         return jsonify({'status': 200 , 'data' : data, 'response':response})
         return render_template("index.html", data = (data), response = response)
+
+app.config["FILE_UPLOADS"] = "/mnt/c/Users/capts/Desktop/gdb_extension/gdb_project/codefiles"
+app.config["ALLOWED_FILE_EXTENSIONS"] = "CPP"   
+
+def allowed_file(filename):
+    if not "." in filename:
+        return False
+    ext = filename.rsplit(".", 1)[1]
+
+    if ext.upper() in app.config["ALLOWED_FILE_EXTENSIONS"]:
+         return True
+    else:
+        return False
+
+@app.route("/upload-file", methods = ['POST' , 'GET'])
+def upload_file():
+        if request.method == 'POST':
+
+            if request.files:
+
+                file = request.files["inpFile"]
+
+                if file.filename == "":
+                    print("Image must have a filename")
+                    return redirect(request.url)
+
+                if not allowed_file(file.filename):
+                    print("This file extension is not supported")
+                    return redirect(request.url)
+
+                else:
+                    filename = secure_filename(file.filename)
+                  
+
+                file.save(os.path.join(app.config["FILE_UPLOADS"], file.filename))
+
+                print('File saved')
+
+                return redirect(request.url)
+
+        return render_template("upload_file.html")
+
+
 
 def apprun():   
     app.run(debug = True)
