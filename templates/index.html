@@ -28,6 +28,14 @@
           position: absolute;
           left: 52%;
         }
+
+        #output-div{
+          align-content: center;
+          position: absolute;
+          width : 80%;
+          top : 500px;
+          height : 1000px;
+        }
     </style>
     </head>
     
@@ -48,7 +56,11 @@
       {%endfor%}
       <br> -->
 
-      <a href="\upload-file">Go to Uploads Page</a>
+      <!--<a href="\upload-file">Go to Uploads Page</a>-->
+      <form  id="myForm" action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="inpFile" id="inpFile">
+        <button type="submit" id="submit">Upload file</button>
+    </form>
 
       <script>
       $(document).ready(function(){
@@ -116,5 +128,12 @@
         elements:  JSON.parse(data)
           });
         </script>
+
+        <div id="output-div"></div>
+        <script>
+          let input = "{{ details|safe }}";
+          console.log(input);
+          document.getElementById("output-div").innerHTML = input;
+        </script> 
     </body>
 </html>
