@@ -4,11 +4,9 @@ using namespace std;
 class Node{
     public:
         int number;
-        int example;
     
     Node(int val){
         number = val;
-        example = 0;
     }
 };
 
@@ -27,7 +25,14 @@ int main(){
     for(int i = 2; i< 10; i++){
         Node *x = new Node(i);
         p->qwer.push_back(*x);
-        p->zxcv.push_back(make_pair(*n,*x));
+        Node *a;
+        for( auto q : p->qwer){
+            if(q.number == i/2){
+                a = &q;
+                break;
+            }
+        }
+        p->zxcv.push_back(make_pair(*a,*x));
     }
     return 0; 
 }

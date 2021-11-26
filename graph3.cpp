@@ -4,18 +4,17 @@ using namespace std;
 class Node{
     public:
         int number;
-        int example;
+        vector<Node> neigbours;
     
     Node(int val){
         number = val;
-        example = 0;
     }
 };
 
 class asdf{
     public:
         vector<Node> qwer;
-        vector<pair<Node,Node>> zxcv; 
+        // vector<pair<Node,Node>> zxcv; 
 };
 
 
@@ -27,7 +26,8 @@ int main(){
     for(int i = 2; i< 10; i++){
         Node *x = new Node(i);
         p->qwer.push_back(*x);
-        p->zxcv.push_back(make_pair(*n,*x));
+        cout << "XXXXXXXXXXXXXXXXXXXx" ; 
+        p->qwer[0].neigbours.push_back(*x);
     }
     return 0; 
 }
