@@ -2,55 +2,36 @@
     {
         "data": {
             "id": 1,
-            "color": "green"
+            "color": "blue",
+            "info": "number:1example:0"
         }
     },
     {
         "data": {
             "id": 2,
-            "color": "green"
+            "color": "blue",
+            "info": "number:2example:0"
         }
     },
     {
         "data": {
             "id": 3,
-            "color": "green"
+            "color": "blue",
+            "info": "number:3example:0"
         }
     },
     {
         "data": {
             "id": 4,
-            "color": "green"
+            "color": "blue",
+            "info": "number:4example:0"
         }
     },
     {
         "data": {
             "id": 5,
-            "color": "green"
-        }
-    },
-    {
-        "data": {
-            "id": 6,
-            "color": "green"
-        }
-    },
-    {
-        "data": {
-            "id": 7,
-            "color": "green"
-        }
-    },
-    {
-        "data": {
-            "id": 8,
-            "color": "green"
-        }
-    },
-    {
-        "data": {
-            "id": 9,
-            "color": "green"
+            "color": "blue",
+            "info": "number:5example:0"
         }
     },
     {
@@ -72,34 +53,6 @@
             "id": "14",
             "source": 1,
             "target": 4
-        }
-    },
-    {
-        "data": {
-            "id": "15",
-            "source": 1,
-            "target": 5
-        }
-    },
-    {
-        "data": {
-            "id": "16",
-            "source": 1,
-            "target": 6
-        }
-    },
-    {
-        "data": {
-            "id": "17",
-            "source": 1,
-            "target": 7
-        }
-    },
-    {
-        "data": {
-            "id": "18",
-            "source": 1,
-            "target": 8
         }
     }
 ]
