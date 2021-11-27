@@ -27,9 +27,59 @@ $(document).ready(function(){
             'background-color': 'data(color)',
             label: 'data(id)'
           }
-    }],
+    },
+    {  selector: 'node:selected',
+              css: {
+                'line-color': 'black',
+                'target-arrow-color': 'black',
+                "curve-style": "bezier",
+                "control-point-step-size": "100",
+                'source-arrow-color': 'black',
+                "border-color": "black",
+                "border-opacity": "1",
+                "border-width": "2px"
+              }
+          },
+          {  selector: 'edge:selected',
+              style: {
+                'line-color': 'black',
+                'target-arrow-color': 'black',
+                "curve-style": "bezier",
+                "control-point-step-size": "100",
+                width: 4
+              }
+          },
+          {
+            selector: 'edge',
+            style: {
+              "curve-style": "bezier",
+              "control-point-step-size": "100",
+              width: 4,
+              //"target-arrow-shape": "triangle",
+              "line-color": "#9dbaea",
+              "target-arrow-color": "#9dbaea"
+            }
+          }],
+
     elements:  JSON.parse(data)
       });
+
+        cy.on('click', 'edge', function(evt){
+          document.getElementById("info").innerHTML = this.source().id()+"-->"+this.target().id();
+        });
+
+      cy.on('tap', 'node', function(evt){
+          document.getElementById("info").innerHTML = 'Data in node: '+this.data("info");
+          var t = cy.elements('node');
+          t.style('background-color', 'blue');
+          this.connectedEdges().targets().style('background-color', 'yellow');    
+          this.connectedEdges().sources().style('background-color', 'purple');        
+        //var t = cy.elements('edge[ source = "1"]');
+        //var f = t.targets();
+        //f.css('background-color', 'pink');
+
+    });
+
         function updateDiv() {$("#cy").load(location.href + " #cy") };
       });
     },{

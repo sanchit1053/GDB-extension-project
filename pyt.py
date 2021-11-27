@@ -28,11 +28,11 @@ class graphPrint:
             config = json.load(file) 
         # make the vectors into nodes 
         type = config[0]["type"]
+        S = gdb.lookup_type(config[type]["Nodes"])
         if type == 1:
             nodevector = vector_to_list(self.val[config[type]["nodes"]])
             edgevector = vector_to_list(self.val[config[type]["edges"]])
             
-            # S = gdb.lookup_type(config[type]["Nodes"])
             # print("hello ");
             # print(S.keys());
             
@@ -49,7 +49,10 @@ class graphPrint:
                         # }
                     # }
                 # ] 
-                data.append( {"data":{"id":int(i[config[type]["keys"]]), "color": normalcolor}})
+                info = ""
+                for variable in S:
+                    info += str(variable) + ":" + str(i[variable])
+                data.append( {"data":{"id":int(i[config[type]["keys"]]), "color": normalcolor, "info": info}})
 
             
             for i in edgevector:
@@ -82,8 +85,11 @@ class graphPrint:
             data = []
             for node in nodevector:
                 nodes += str(node[config[type]["keys"]]) + ','
-                data.append( {"data":{"id":int(node[config[type]["keys"]]), "color": normalcolor}})
-                print(node[config[type]["neighbour"]])
+                info = ""
+                for variable in S:
+                    info += str(variable) + ":" + str(node[variable])
+                data.append( {"data":{"id":int(node[config[type]["keys"]]), "color": normalcolor, "info" : info}})
+                # print(node[config[type]["neighbour"]])
                 adjacent = vector_to_list(node[config[type]["neighbour"]])
                 # print("MAMAMAM")
                 print(adjacent)

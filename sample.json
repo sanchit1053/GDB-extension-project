@@ -2,13 +2,57 @@
     {
         "data": {
             "id": 1,
-            "color": "blue"
+            "color": "blue",
+            "info": "number:1example:0"
         }
     },
     {
         "data": {
             "id": 2,
-            "color": "blue"
+            "color": "blue",
+            "info": "number:2example:0"
+        }
+    },
+    {
+        "data": {
+            "id": 3,
+            "color": "blue",
+            "info": "number:3example:0"
+        }
+    },
+    {
+        "data": {
+            "id": 4,
+            "color": "blue",
+            "info": "number:4example:0"
+        }
+    },
+    {
+        "data": {
+            "id": 5,
+            "color": "blue",
+            "info": "number:5example:0"
+        }
+    },
+    {
+        "data": {
+            "id": "12",
+            "source": 1,
+            "target": 2
+        }
+    },
+    {
+        "data": {
+            "id": "13",
+            "source": 1,
+            "target": 3
+        }
+    },
+    {
+        "data": {
+            "id": "14",
+            "source": 1,
+            "target": 4
         }
     }
 ]
