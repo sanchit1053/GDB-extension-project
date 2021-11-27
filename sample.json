@@ -36,6 +36,27 @@
     },
     {
         "data": {
+            "id": 6,
+            "color": "blue",
+            "info": "number:6example:0"
+        }
+    },
+    {
+        "data": {
+            "id": 7,
+            "color": "blue",
+            "info": "number:7example:0"
+        }
+    },
+    {
+        "data": {
+            "id": 8,
+            "color": "blue",
+            "info": "number:8example:0"
+        }
+    },
+    {
+        "data": {
             "id": "12",
             "source": 1,
             "target": 2
@@ -53,6 +74,34 @@
             "id": "14",
             "source": 1,
             "target": 4
+        }
+    },
+    {
+        "data": {
+            "id": "15",
+            "source": 1,
+            "target": 5
+        }
+    },
+    {
+        "data": {
+            "id": "16",
+            "source": 1,
+            "target": 6
+        }
+    },
+    {
+        "data": {
+            "id": "17",
+            "source": 1,
+            "target": 7
+        }
+    },
+    {
+        "data": {
+            "id": "18",
+            "source": 1,
+            "target": 8
         }
     }
 ]
