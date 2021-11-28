@@ -25,19 +25,25 @@ $(document).ready(function(){
         container: $('#cy'),
 
     layout: {
-      name: 'dagre',
-      rankDir: 'LR'
-    },
-        style: [
-    {
-        selector: 'node',
-        style: {
-            shape: 'hexagon',
-            'background-color': 'data(color)',
-            label: 'data(id)'
-          }
-    },
-    {  selector: 'node:selected',
+            name: 'cose',
+              fit: true,
+              zoomingEnabled: true,
+              userZoomingEnabled: true,
+              styleEnabled: true
+          
+          },
+            
+          style: [
+          {
+            selector: 'node',
+            style: {
+                shape: "circle",
+                "line-color": "#61bffc",
+                'background-color': 'data(color)',
+                label: 'data(id)'
+              }
+          },
+          {  selector: 'node:selected',
               css: {
                 'line-color': 'black',
                 'target-arrow-color': 'black',
@@ -77,18 +83,15 @@ $(document).ready(function(){
       cy.on('click', 'edge', function(evt){
           document.getElementById("info").innerHTML = this.source().id()+"-->"+this.target().id();
       });
-
-      
+ 
 
       cy.on('tap', 'node', function(evt){
           //document.getElementById("info").innerHTML = 'Data in node: '+this.data("info");
           f = this.data("info");
           var t = cy.elements('node');
-          t.style('background-color', 'blue');
+          //t.style('background-color', 'blue');
           this.connectedEdges().targets().style('background-color', 'yellow');    
           this.connectedEdges().sources().style('background-color', 'purple');  
-
-
 
           if(!made){
 
@@ -111,14 +114,37 @@ $(document).ready(function(){
                 selectList.appendChild(option);
             }
           }
+      });
 
+
+      cy.on('cxttap', 'node', function(evt){
+
+          var p = this.successors().targets().length;
+          if (this.scratch().restData == null) {
+            // Save node data and remove
             
+            this.scratch({
+        
+              restData: this.successors().targets().remove()
 
+            });
 
+          if(p > 0){
+              this.style('background-color', 'red'); 
+              this.style('label', "Group "+String(this.id())+" (Nodes: "+String(p)+")");
+          }
 
+          } 
+          else {
+            // Restore the removed nodes from saved data
+            this.scratch().restData.restore();
+            this.style('label', this.id());
+            this.connectedEdges().sources().style('background-color', 'purple'); 
 
-
-
+            this.scratch({
+                 restData: null
+            });
+          }
       });
 
       function updateDiv() {$("#cy").load(location.href + " #cy") };
