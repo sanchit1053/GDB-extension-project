@@ -8,7 +8,7 @@
     border-color: black;
 }
 
-#myDiv{
+#myDiv {
     width: 40%;
     height: 34%;
     position: fixed;
@@ -16,80 +16,94 @@
     right: 59%;
 }
 
-#r{
-  height: 15px;
-  width: 15px;
-  background-color: red;
-  border-radius: 50%;
-  display: inline-block;
-  position: fixed;
-  left: 55%;
-  top: 55%;
+#r {
+    height: 15px;
+    width: 15px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+    position: fixed;
+    left: 55%;
+    top: 55%;
 }
 
-#rt{
-  position: fixed;
-  left: 58%;
-  top: 55%;
+#rt {
+    position: fixed;
+    left: 58%;
+    top: 55%;
 }
 
-#y{
-  height: 15px;
-  width: 15px;
-  background-color: yellow;
-  border-radius: 50%;
-  display: inline-block;
-  position: fixed;
-  left: 55%;
-  top: 60%;
+#y {
+    height: 15px;
+    width: 15px;
+    background-color: yellow;
+    border-radius: 50%;
+    display: inline-block;
+    position: fixed;
+    left: 55%;
+    top: 58%;
 }
 
-#yt{
-  position: fixed;
-  left: 58%;
-  top: 60%;
+#yt {
+    position: fixed;
+    left: 58%;
+    top: 58%;
 }
 
-#cmds{
-  position: fixed;
-  left: 55%;
-  top: 65%;
+#p {
+    height: 15px;
+    width: 15px;
+    background-color: purple;
+    border-radius: 50%;
+    display: inline-block;
+    position: fixed;
+    left: 55%;
+    top: 61%;
 }
 
-#myForm{
+#pt {
+    position: fixed;
+    left: 58%;
+    top: 61%;
+}
+
+#cmds {
+    position: fixed;
+    left: 55%;
+    top: 65%;
+}
+
+#myForm {
     width: 40%;
     height: 34%;
     position: fixed;
     left: 55%;
-    top : 75%
+    top: 75%
 }
 
-#terminal{
+#terminal {
     width: 45%;
     height: 50%;
     position: fixed;
     left: 55%;
     top: 10px
-    }
+}
 
-#output-div{
+#output-div {
     align-content: center;
     position: fixed;
-    width : 80%;
-    top : 500px;
-    height : 1000px;
+    width: 80%;
+    top: 500px;
+    height: 1000px;
 }
 
-#info{
-    position:fixed;
-    color:green ;
+#info {
+    position: fixed;
+    color: green;
     font-size: 50px;
-    width:50%;
-    height:50%;
+    width: 50%;
+    height: 50%;
     border-color: black;
     border-style: solid;
-    /* text-align: center; */
-    /* right:59%; */
-    top:50%;
+    top: 50%;
 }
-
