@@ -57,6 +57,13 @@
     },
     {
         "data": {
+            "id": 9,
+            "color": "blue",
+            "info": "{\"number\":9, \"example\":0}"
+        }
+    },
+    {
+        "data": {
             "id": "12",
             "source": 1,
             "target": 2
