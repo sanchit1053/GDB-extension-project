@@ -1,19 +1,91 @@
 #cy {
-    width: 50%;
-    height: 50%;
+    width: 55%;
+    height: 87%;
     position: absolute;
-    left: 10px;
-    top: 200px;
+    right: 10px;
+    top: 100px;
     border-style: solid;
     border-color: black;
 }
 
-#terminal{
-    width: 50%;
-    height: 80%;
+#myDiv{
+    width: 40%;
+    height: 34%;
     position: absolute;
-    left: 52%;
-    top: 50px
+    top: 50px;
+    right: 59%;
+}
+
+#r{
+  height: 15px;
+  width: 15px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  right: 1000px;
+  top: 10px;
+}
+
+#rt{
+  position: absolute;
+  right: 850px;
+  top: 10px;
+}
+
+#y{
+  height: 15px;
+  width: 15px;
+  background-color: yellow;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  right: 1000px;
+  top: 30px;
+}
+
+#yt{
+  position: absolute;
+  right: 850px;
+  top: 30px;
+}
+
+#p{
+  height: 15px;
+  width: 15px;
+  background-color: purple;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  right: 1000px;
+  top: 50px;
+}
+
+#pt{
+  position: absolute;
+  right: 850px;
+  top: 50px;
+}
+
+#cmds{
+  position: absolute;
+  right: 500px;
+  top: 0px;
+}
+
+#myForm{
+    width: 40%;
+    height: 34%;
+    position: absolute;
+    right: 59%;
+}
+
+#terminal{
+    width: 40%;
+    height: 34%;
+    position: absolute;
+    right: 59%;
+    top: 620px
     }
 
 #output-div{
@@ -25,6 +97,14 @@
 }
 
 #info{
+    position:absolute;
     color:green ;
-    font-size: 30px;
+    font-size: 50px;
+    width:40%;
+    height:500px;
+    border-color: black;
+    border-style: solid;
+    text-align: center;
+    right: 59%;
+    top:50px;
 }
