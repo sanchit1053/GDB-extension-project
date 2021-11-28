@@ -51,7 +51,7 @@ class graphPrint:
                 # ] 
                 info = ""
                 for variable in S:
-                    info += str(variable) + ":" + str(i[variable])
+                    info += str(variable) + "->" + str(i[variable]) + '<br>'
                 data.append( {"data":{"id":int(i[config[type]["keys"]]), "color": normalcolor, "info": info}})
 
             
@@ -87,12 +87,12 @@ class graphPrint:
                 nodes += str(node[config[type]["keys"]]) + ','
                 info = ""
                 for variable in S:
-                    info += str(variable) + ":" + str(node[variable])
+                    info += str(variable) + "->" + str(node[variable]) + '<br>'
                 data.append( {"data":{"id":int(node[config[type]["keys"]]), "color": normalcolor, "info" : info}})
                 # print(node[config[type]["neighbour"]])
                 adjacent = vector_to_list(node[config[type]["neighbour"]])
                 # print("MAMAMAM")
-                print(adjacent)
+                # print(adjacent)
                 for neighbour in adjacent:
                     edges += "(" + str(node[config[type]["keys"]])+"," + str(neighbour[config[type]["keys"]])+ '), '
                     data.append( {"data" : {    "id" : str(node[config[type]["keys"]]) + str(neighbour[config[type]["keys"]]),

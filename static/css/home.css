@@ -1,19 +1,19 @@
 #cy {
     width: 50%;
-    height: 80%;
+    height: 50%;
     position: absolute;
     left: 10px;
-    top: 50px;
+    top: 20px;
     border-style: solid;
     border-color: black;
 }
 
 #terminal{
     width: 50%;
-    height: 80%;
+    height: 50%;
     position: absolute;
     left: 52%;
-    top: 50px
+    top: 20px
     }
 
 #output-div{
@@ -25,6 +25,22 @@
 }
 
 #info{
-    color:green ;
+    position:absolute;
+    /* color:green ; */
     font-size: 30px;
+    font-size: 25px;
+    top : 55%;
+    left: 10px;
+    width:50%;
+    height:50%;
+    border-color: black;
+    border-style: solid;
 }
+
+#dataoutput{
+    /* text-align: center; */
+    position:absolute;
+    left:1px;
+    color:red;
+    font-size: 25px;
+} 

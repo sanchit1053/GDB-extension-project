@@ -3,35 +3,35 @@
         "data": {
             "id": 1,
             "color": "blue",
-            "info": "number:1example:0"
+            "info": "number->1<br>"
         }
     },
     {
         "data": {
             "id": 2,
             "color": "blue",
-            "info": "number:2example:0"
+            "info": "number->2<br>"
         }
     },
     {
         "data": {
             "id": 3,
             "color": "blue",
-            "info": "number:3example:0"
+            "info": "number->3<br>"
         }
     },
     {
         "data": {
             "id": 4,
             "color": "blue",
-            "info": "number:4example:0"
+            "info": "number->4<br>"
         }
     },
     {
         "data": {
             "id": 5,
             "color": "blue",
-            "info": "number:5example:0"
+            "info": "number->5<br>"
         }
     },
     {
@@ -50,8 +50,8 @@
     },
     {
         "data": {
-            "id": "14",
-            "source": 1,
+            "id": "24",
+            "source": 2,
             "target": 4
         }
     }
