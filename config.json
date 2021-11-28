@@ -1,0 +1,24 @@
+[
+    {
+        "type" : 1
+    },
+    {
+        "Graph": "asdf",
+        
+        "nodes": "qwer",
+        "keys" : "number",
+        
+        "edges": "zxcv",
+        "Nodes": "Node"
+    },
+
+    {
+        "Graph": "asdf",
+        "nodes": "qwer",
+
+        "keys" : "number",
+
+        "Nodes": "Node",
+        "neighbour": "neigbours"
+    }
+]

@@ -1,33 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <title>Tutorial 1: Getting Started</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/2.7.10/cytoscape.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js"></script>
-        <!--<script src="node_modules\cytoscape\dist\cytoscape.min.js"></script>-->
-        <style>
-            #cy {
-        width: 50%;
-        height: 50%;
-        position: absolute;
-        top: 80px;
-        left: 10px;
-        border-style: solid;
-        border-color: black;
-    }
-    </style>
-    </head>
-    
-    <body> 
-      <div id="cy" ></div>
+<head>
+  <title>Graph Visualizer</title>
+  <meta charset="UTF-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.29.4/js/jquery.terminal.min.js"></script>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.29.4/css/jquery.terminal.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.19.1/cytoscape.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.2.2/cytoscape-dagre.min.js"></script>
 
-      <form action="/hello" method = "post">
-        command <input type = "text" name = "cmd" >
-        <input type = "submit" value = "Submit" >
-      </form>
+  <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/home.css')}}">
+  <script type='text/javascript' src="{{url_for('static', filename='js/terminal.js')}}"> </script>
+  <!-- <style>
+          
+    </style> -->
+</head>
 
-      {% for r in response %}
+<body>
+  <div id="cy"></div>
+  <div id="terminal"></div>
+  <!---    {% for r in response %}
         {%if r['type'] == 'output'%} 
           {{r['payload']}} <br>
         {%endif%}
@@ -35,81 +30,82 @@
           {{r['payload']}} <br>
         {%endif%}
       {%endfor%}
-      <br>
+      <br> -->
 
 
+  <form  id="myForm" action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="inpFile" id="inpFile">
+        <button type="submit" id="submit">Upload file</button>
+      </form> 
 
-      <script>
-        
-          var data = '{{ data |tojson }}'; 
-          console.log(data);
-          var cy = cytoscape({
-            container: document.getElementById('cy'),
+  <!-- <script> </script> -->
+  <div id="myDiv"> Select <button onclick="getOption()"> Show </button></div>
 
-            layout: {
-                name: "dagre"
-            },
+  <script>
 
-            style: [
+
+    var data = '{{ data |tojson }}';
+    var cy = cytoscape({
+      // container: document.getElementById('cy'),
+      container: $('#cy'),
+
+      layout: {
+        name: 'dagre',
+        rankDir: 'LR'
+      },
+      style: [
         {
-            selector: 'node',
-            style: {
-                shape: 'hexagon',
-                'background-color': 'green',
-                label: 'data(id)'
-              }
+          selector: 'node',
+          style: {
+            shape: 'round-rectangle',
+            'background-color': 'data(color)',
+            label: 'data(id)'
+          }
         }],
-        layout: {
-        name: 'concentric'
-    },
-            elements:  JSON.parse(data)
-            /*[
-      // nodes
-      { data: { id: 'a' } },
-      { data: { id: 'b' } },
-      { data: { id: 'c' } },
-      { data: { id: 'd' } },
-      { data: { id: 'e' } },
-      { data: { id: 'f' } },
-      // edges
-      {
-        data: {
-          id: 'ab',
-          source: 'a',
-          target: 'b'
-        }
-      },
-      {
-        data: {
-          id: 'cd',
-          source: 'c',
-          target: 'd'
-        }
-      },
-      {
-        data: {
-          id: 'ef',
-          source: 'e',
-          target: 'f'
-        }
-      },
-      {
-        data: {
-          id: 'ac',
-          source: 'a',
-          target: 'd'
-        }
-      },
-      {
-        data: {
-          id: 'be',
-          source: 'b',
-          target: 'e'
-        }
-      }
-    ] */
-          });
+      elements: JSON.parse(data)
+    });
+  </script>
 
-        </script>
-    </body>
+  <!--  -->
+  <!-- <div id="output-div"></div>
+        <script>
+          let input = "{{ details|safe }}";
+          console.log(input);
+          document.getElementById("output-div").innerHTML = input;
+        </script> -->
+  <!--  -->
+
+
+  <!-- <div id="info">
+    <p id="dataoutput">DATA STORED</p>
+
+  </div> -->
+
+  <p id="info"></p>
+  <div id="r">
+  </div>
+  <div id="rt">
+    GROUP OF NODES
+  </div>
+
+  <div id="y">
+  </div>
+  <div id="yt">
+    CHILDREN NODE
+  </div>
+
+  <!-- <div id="p">
+  </div>
+  <div id="pt">
+    PARENT NODE
+  </div> -->
+ 
+  <p id="cmds">
+    LEFT CLICK: SELECT NODE
+    <br>
+    RIGHT CLICK: COLLAPSE NODES
+  </p>
+
+</body>
+
 </html>
