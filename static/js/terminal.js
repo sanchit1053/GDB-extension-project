@@ -25,7 +25,7 @@ $(document).ready(function(){
         container: $('#cy'),
 
     layout: {
-            name: 'cose',
+            name: 'dagre',
               fit: true,
               zoomingEnabled: true,
               userZoomingEnabled: true,
@@ -37,7 +37,7 @@ $(document).ready(function(){
           {
             selector: 'node',
             style: {
-                shape: "circle",
+                shape: "round-rectangle",
                 "line-color": "#61bffc",
                 'background-color': 'data(color)',
                 label: 'data(id)'
@@ -131,6 +131,7 @@ $(document).ready(function(){
 
           if(p > 0){
               this.style('background-color', 'red'); 
+              this.style('shape', 'round-pentagon');
               this.style('label', "Group "+String(this.id())+" (Nodes: "+String(p)+")");
           }
 
@@ -138,8 +139,10 @@ $(document).ready(function(){
           else {
             // Restore the removed nodes from saved data
             this.scratch().restData.restore();
+            this.style('shape', 'round-rectangle');
             this.style('label', this.id());
             this.connectedEdges().sources().style('background-color', 'purple'); 
+
 
             this.scratch({
                  restData: null
