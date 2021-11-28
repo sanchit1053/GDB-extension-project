@@ -1,1 +1,30 @@
-jjj
+#cy {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    left: 10px;
+    top: 200px;
+    border-style: solid;
+    border-color: black;
+}
+
+#terminal{
+    width: 50%;
+    height: 80%;
+    position: absolute;
+    left: 52%;
+    top: 50px
+    }
+
+#output-div{
+    align-content: center;
+    position: absolute;
+    width : 80%;
+    top : 500px;
+    height : 1000px;
+}
+
+#info{
+    color:green ;
+    font-size: 30px;
+}
