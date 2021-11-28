@@ -43,27 +43,6 @@
     },
     {
         "data": {
-            "id": 7,
-            "color": "blue",
-            "info": "{\"number\":7, \"example\":0}"
-        }
-    },
-    {
-        "data": {
-            "id": 8,
-            "color": "blue",
-            "info": "{\"number\":8, \"example\":0}"
-        }
-    },
-    {
-        "data": {
-            "id": 9,
-            "color": "blue",
-            "info": "{\"number\":9, \"example\":0}"
-        }
-    },
-    {
-        "data": {
             "id": "12",
             "source": 1,
             "target": 2
@@ -95,20 +74,6 @@
             "id": "16",
             "source": 1,
             "target": 6
-        }
-    },
-    {
-        "data": {
-            "id": "17",
-            "source": 1,
-            "target": 7
-        }
-    },
-    {
-        "data": {
-            "id": "18",
-            "source": 1,
-            "target": 8
         }
     }
 ]
