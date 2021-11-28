@@ -12,20 +12,20 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 
 #
-# dir = os.getcwd()
-# parent_dir = os.path.dirname(dir)
-# app.config["FILE_UPLOADS"] = parent_dir
-# app.config["ALLOWED_FILE_EXTENSIONS"] = "CPP"  
+dir = os.getcwd()
+app.config["FILE_UPLOADS"] = os.path.join(dir ,"codefiles")
+app.config["ALLOWED_FILE_EXTENSIONS"] = "EXE"
 
-# def allowed_file(filename):
-#     if not "." in filename:
-#         return False
-#     ext = filename.rsplit(".", 1)[1]
+def allowed_file(filename):
+     if not "." in filename:
+        return False
+     ext = filename.rsplit(".", 1)[1]
 
-#     if ext.upper() in app.config["ALLOWED_FILE_EXTENSIONS"]:
-#          return True
-#     else:
-#         return False
+     if ext.upper() in app.config["ALLOWED_FILE_EXTENSIONS"]:
+          return True
+     else:
+         return False
+
 
 # #
 
@@ -45,33 +45,33 @@ def index():
     # if command made on page then process the commandand send back the response
     if request.method == 'POST':
         ###################
-        # if request.files:
-        #         file = request.files["inpFile"]
-        #         if file.filename == "":
-        #             print("Image must have a filename")
-        #             return redirect(request.url)
-        #         if not allowed_file(file.filename):
-        #             print("This file extension is not supported")
-        #             return redirect(request.url)
-        #         else:
-        #             filename = secure_filename(file.filename)
-        #         file.save(os.path.join(app.config["FILE_UPLOADS"], file.filename))
-        #         print('File saved')
-        #         print(file.filename)
-        #         file_path =os.path.join(parent_dir,file.filename)
-        #         print(file_path)
-        #         with open(file_path,'r') as f:
-        #             details = f.read().replace('\n','<br>')
-        #         return render_template("index.html",details = details,data = (data))
-        # else:
+        if request.files:
+            file = request.files["inpFile"]
+            if file.filename == "":
+                print("Image must have a filename")
+                return redirect(request.url)
+            if not allowed_file(file.filename):
+                print("This file extension is not supported")
+                return redirect(request.url)
+            else:
+                filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config["FILE_UPLOADS"], file.filename))
+            print('File saved')
+            print(file.filename)
+            print(dir)
+            file_path =os.path.join(dir,file.filename)
+#                with open(file_path,'r') as f:
+#                    details = f.read().replace('\n','<br>')
+            return render_template("index.html",data = (data))
+        else:
 ########################
-        # read the command
-        command = request.form['cmd']
-        # process the command
-        response = gdb.write(command)        
-        # return the json of the data
-        return jsonify({'status': 200 , 'data' : data, 'response':response})
-        return render_template("index.html", data = (data), response = response)
+            # read the command
+            command = request.form['cmd']
+            # process the command
+            response = gdb.write(command)        
+            # return the json of the data
+            return jsonify({'status': 200 , 'data' : data, 'response':response})
+            return render_template("index.html", data = (data), response = response)
 
 def apprun():   
     app.run(debug = True)

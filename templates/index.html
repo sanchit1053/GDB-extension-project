@@ -22,12 +22,7 @@
 <body>
   <div id="cy"></div>
   <div id="terminal"></div>
-  <!-- <form action="/" method = "post">
-        command <input type = "text" name = "cmd" >
-        <input type = "submit" value = "Submit" >
-      </form>
-
-      {% for r in response %}
+  <!---    {% for r in response %}
         {%if r['type'] == 'output'%} 
           {{r['payload']}} <br>
         {%endif%}
@@ -38,13 +33,13 @@
       <br> -->
 
 
-  <!-- <form  id="myForm" action="/" method="post" enctype="multipart/form-data">
+  <form  id="myForm" action="/" method="post" enctype="multipart/form-data">
         <input type="file" name="inpFile" id="inpFile">
         <button type="submit" id="submit">Upload file</button>
-      </form> -->
+      </form> 
 
   <!-- <script> </script> -->
-
+  <div id="myDiv"> Select <button onclick="getOption()"> Show </button></div>
 
   <script>
 
@@ -62,7 +57,7 @@
         {
           selector: 'node',
           style: {
-            shape: 'hexagon',
+            shape: 'round-rectangle',
             'background-color': 'data(color)',
             label: 'data(id)'
           }
@@ -79,10 +74,37 @@
           document.getElementById("output-div").innerHTML = input;
         </script> -->
   <!--  -->
-  <div id="info">
+
+
+  <!-- <div id="info">
     <p id="dataoutput">DATA STORED</p>
 
+  </div> -->
+
+  <p id="info"></p>
+  <div id="r">
   </div>
+  <div id="rt">
+    GROUP OF NODES
+  </div>
+
+  <div id="y">
+  </div>
+  <div id="yt">
+    CHILDREN NODE
+  </div>
+
+  <!-- <div id="p">
+  </div>
+  <div id="pt">
+    PARENT NODE
+  </div> -->
+ 
+  <p id="cmds">
+    LEFT CLICK: SELECT NODE
+    <br>
+    RIGHT CLICK: COLLAPSE NODES
+  </p>
 
 </body>
 

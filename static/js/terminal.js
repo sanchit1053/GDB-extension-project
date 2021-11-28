@@ -1,3 +1,11 @@
+var f;
+var made = false;
+function getOption() {
+  var e = document.getElementById("mySelect");
+  var strUser = e.options[e.selectedIndex].value;
+  document.getElementById("info").innerHTML = Object.values(JSON.parse(f))[strUser];
+}
+
 $(document).ready(function(){
      
     $('#terminal').terminal(function(command,term){
@@ -17,13 +25,12 @@ $(document).ready(function(){
 
     layout: {
       name: 'dagre',
-      rankDir: 'LR'
     },
         style: [
     {
         selector: 'node',
         style: {
-            shape: 'hexagon',
+            shape: 'round-rectangle',
             'background-color': 'data(color)',
             label: 'data(id)'
           }
@@ -71,33 +78,94 @@ $(document).ready(function(){
         });
 
       cy.on('tap', 'node', function(evt){
-          document.getElementById("info").innerHTML = this.data("info");
+          // document.getElementById("info").innerHTML = this.data("info");
+
+          f = this.data("info")
+          console.log(f)
         //   var t = cy.elements('node');
         //   t.style('background-color', 'blue');
         //   this.connectedEdges().targets().style('background-color', 'yellow');    
         //   this.connectedEdges().sources().style('background-color', 'purple');
-        if (this.scratch().restData == null) {
-          // Save node data and remove
-          this.scratch({
-            restData: this.successors().targets().remove()
-          });
-       } else {
-          // Restore the removed nodes from saved data
-          this.scratch().restData.restore();
-          this.scratch({
-               restData: null
-          });
-       }         
+        var t = cy.elements('node')
+
+        if(!made){
+
+          made = true;
+          const obj1 = JSON.parse(cy.elements('node[ id = "1"]').data("info"));
+          var myDiv = document.getElementById("myDiv");
+          //Create array of options to be added
+          var array = Object.keys(obj1);
+
+          //Create and append select list
+          var selectList = document.createElement("select");
+          selectList.setAttribute("id", "mySelect");
+          myDiv.appendChild(selectList);
+
+          //Create and append the options
+          for (var i = 0; i < array.length; i++) {
+              var option = document.createElement("option");
+              option.setAttribute("value", i);
+              option.text = array[i];
+              selectList.appendChild(option);
+          }
+        }
+
+        
+      //   if (this.scratch().restData == null) {
+      //     // Save node data and remove
+      //     this.scratch({
+      //       restData: this.successors().targets().remove()
+      //     });
+      //  } else {
+      //     // Restore the removed nodes from saved data
+      //     this.scratch().restData.restore();
+      //     this.scratch({
+      //          restData: null
+      //     }
+      //     );
+      //  }         
         // //var t = cy.elements('edge[ source = "1"]');
         //var f = t.targets();
         //f.css('background-color', 'pink');
 
     });
+    cy.on('cxttap', 'node', function(evt){
+
+      var p = this.successors().targets().length;
+      if (this.scratch().restData == null) {
+        // Save node data and remove
+        
+        this.scratch({
+    
+          restData: this.successors().targets().remove()
+
+        });
+
+      if(p > 0){
+          this.style('background-color', 'red'); 
+          this.style('shape', 'round-pentagon');
+          this.style('label', "Group "+String(this.id())+" (Nodes: "+String(p)+")");
+      }
+
+      } 
+      else {
+        // Restore the removed nodes from saved data
+        this.scratch().restData.restore();
+        this.style('shape', 'round-rectangle');
+        this.style('label', this.id());
+        this.connectedEdges().sources().style('background-color', 'blue'); 
+
+
+        this.scratch({
+             restData: null
+        });
+      }
+  });
 
         function updateDiv() {$("#cy").load(location.href + " #cy") };
       });
     },{
-      greetings: 'Welcome to the GDB Graph visualizer by Team Terminal Stack'
+      greetings: 'Welcome to the GDB Graph Debugger by Team Terminal Stack'
     });
 
  });

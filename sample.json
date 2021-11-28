@@ -3,35 +3,28 @@
         "data": {
             "id": 1,
             "color": "blue",
-            "info": "number->1<br>"
+            "info": "{\"number\":\"1\", \"example\":\"0\"}"
         }
     },
     {
         "data": {
             "id": 2,
             "color": "blue",
-            "info": "number->2<br>"
+            "info": "{\"number\":\"2\", \"example\":\"0\"}"
         }
     },
     {
         "data": {
             "id": 3,
             "color": "blue",
-            "info": "number->3<br>"
+            "info": "{\"number\":\"3\", \"example\":\"0\"}"
         }
     },
     {
         "data": {
             "id": 4,
             "color": "blue",
-            "info": "number->4<br>"
-        }
-    },
-    {
-        "data": {
-            "id": 5,
-            "color": "blue",
-            "info": "number->5<br>"
+            "info": "{\"number\":\"4\", \"example\":\"0\"}"
         }
     },
     {
@@ -46,13 +39,6 @@
             "id": "13",
             "source": 1,
             "target": 3
-        }
-    },
-    {
-        "data": {
-            "id": "24",
-            "source": 2,
-            "target": 4
         }
     }
 ]

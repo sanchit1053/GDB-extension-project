@@ -51,7 +51,9 @@ class graphPrint:
                 # ] 
                 info = ""
                 for variable in S:
-                    info += str(variable) + "->" + str(i[variable]) + '<br>'
+                    info += '"' + str(variable) + '":"' + str(i[variable]) + '", '
+                info = info[0:-2]
+                info = "{" + info + "}"
                 data.append( {"data":{"id":int(i[config[type]["keys"]]), "color": normalcolor, "info": info}})
 
             
@@ -77,7 +79,7 @@ class graphPrint:
             with open("sample.json","w") as file:
                 json.dump(data, file , indent = 4)
             # return nodes and edges to be printned on terminal
-            return "nodes: " + nodes + "\n" + "edges: " + edges
+            return "nodes: " + nodes + '\n' + "edges: " + edges
 
         elif type == 2:
             nodevector = vector_to_list(self.val[config[type]["nodes"]])
@@ -87,7 +89,9 @@ class graphPrint:
                 nodes += str(node[config[type]["keys"]]) + ','
                 info = ""
                 for variable in S:
-                    info += str(variable) + "->" + str(node[variable]) + '<br>'
+                    info += '"'+ str(variable) + '":"' + str(node[variable]) + '", '
+                info = info[0:-2]
+                info = "{" + info + "}"
                 data.append( {"data":{"id":int(node[config[type]["keys"]]), "color": normalcolor, "info" : info}})
                 # print(node[config[type]["neighbour"]])
                 adjacent = vector_to_list(node[config[type]["neighbour"]])
@@ -102,7 +106,7 @@ class graphPrint:
             with open("sample.json","w") as file:
                 json.dump(data, file , indent = 4)
             
-            return "Hello \n nodes: " + nodes + "\n" + "edges: " + edges
+            return "nodes: " + nodes + "\n" + "edges: " + edges
 
 
     
