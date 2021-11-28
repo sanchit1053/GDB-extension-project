@@ -2,77 +2,77 @@
     {
         "data": {
             "id": 1,
-            "word": 1804289383,
-            "color": "blue"
+            "color": "blue",
+            "info": "{\"number\":1, \"example\":0}"
         }
     },
     {
         "data": {
             "id": 2,
-            "word": 846930886,
-            "color": "blue"
+            "color": "blue",
+            "info": "{\"number\":2, \"example\":0}"
         }
     },
     {
         "data": {
             "id": 3,
-            "word": 1681692777,
-            "color": "blue"
+            "color": "blue",
+            "info": "{\"number\":3, \"example\":0}"
         }
     },
     {
         "data": {
             "id": 4,
-            "word": 1957747793,
-            "color": "blue"
+            "color": "blue",
+            "info": "{\"number\":4, \"example\":0}"
         }
     },
     {
         "data": {
             "id": 5,
-            "word": 719885386,
-            "color": "blue"
+            "color": "blue",
+            "info": "{\"number\":5, \"example\":0}"
         }
     },
     {
         "data": {
             "id": 6,
-            "word": 596516649,
-            "color": "blue"
+            "color": "blue",
+            "info": "{\"number\":6, \"example\":0}"
         }
     },
     {
         "data": {
             "id": 7,
-            "word": 1025202362,
-            "color": "blue"
+            "color": "blue",
+            "info": "{\"number\":7, \"example\":0}"
         }
     },
     {
         "data": {
             "id": 8,
-            "word": 783368690,
-            "color": "blue"
+            "color": "blue",
+            "info": "{\"number\":8, \"example\":0}"
         }
     },
     {
         "data": {
-            "id": 9,
-            "word": 2044897763,
-            "color": "blue"
+            "id": "12",
+            "source": 1,
+            "target": 2
         }
     },
     {
         "data": {
-            "id": "23",
-            "source": 2,
+            "id": "13",
+            "source": 1,
             "target": 3
         }
     },
     {
         "data": {
-            "id": "24",
-            "source": 2,
+            "id": "14",
+            "source": 1,
             "target": 4
         }
     },
@@ -85,22 +85,22 @@
     },
     {
         "data": {
-            "id": "26",
-            "source": 2,
+            "id": "16",
+            "source": 1,
             "target": 6
         }
     },
     {
         "data": {
-            "id": "27",
-            "source": 2,
+            "id": "17",
+            "source": 1,
             "target": 7
         }
     },
     {
         "data": {
-            "id": "28",
-            "source": 2,
+            "id": "18",
+            "source": 1,
             "target": 8
         }
     }
